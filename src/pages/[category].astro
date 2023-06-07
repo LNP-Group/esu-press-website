@@ -1,0 +1,42 @@
+---
+
+import Post from '../components/Post';
+import { categories } from '../data/categories'
+import Layout from '../layouts/Layout.astro';
+
+export function getStaticPaths() {
+    return [
+        { params: { category: 'press-releases' } }
+    ]
+}
+
+import '../styles/category.scss'
+
+---
+
+{categories.map((category) => {
+    return (
+        <Layout
+            title={category.name}
+            description={category.description}
+            image={category.image}
+        >
+            <header>
+                <h1>{category.name}</h1>
+                <p>{category.description}</p>
+            </header>
+            <div class="posts">
+                {category.posts.map((post) => {
+                    return (
+                        <Post
+                            title={post.title}
+                            excerpt={post.excerpt}
+                            image={post.image}
+                            slug={post.slug}
+                        />
+                    )
+                })}
+            </div>
+        </Layout>
+    )
+})}

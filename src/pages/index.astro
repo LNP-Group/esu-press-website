@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Posts from '../components/Posts.jsx'
+import { featuredPost } from '../data/posts.js'
+
+import '../styles/home.scss'
+---
+
+<Layout
+    title="ESU Newsroom"
+    description="The latest news from the Ethereal Superheroes Universe."
+    image="https://cdn.esufranchise.com/press/hero.png"
+>
+    <div class="featured-post">
+        <img class="featured-post__image" src={featuredPost.image} alt={featuredPost.title} />
+        <div class="featured-post__content">
+            <div class="post-meta">
+                <h1>{featuredPost.title}</h1>
+                <p>{featuredPost.excerpt}</p>
+            </div>
+            <a href={featuredPost.slug} class="button">Read More</a>
+        </div>
+    </div>
+    <h2 class="section-title">
+        <span>Latest News</span>
+    </h2>
+    <Posts />
+</Layout>

@@ -1,0 +1,19 @@
+.header {
+    background-color: rgba(0, 0, 255, .75);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+main {
+    height: calc(100dvh - 5rem - calc(67.5px + 20px));
+
+    p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        color: #00f;
+        text-align: center;
+    }
+}

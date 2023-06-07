@@ -1,0 +1,41 @@
+---
+export interface Props {
+	title: string
+	image: string
+	description: string
+}
+
+const { title, description, image } = Astro.props
+
+import Footer from '../components/Footer.astro'
+import Navbar from '../components/Navbar.astro'
+import '../styles/globals.scss'
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description}>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="https://cdn.esufranchise.com/press/favicon.svg" />
+		<title>{title}</title>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://press.esufranchise.com" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@esufranchise" />
+		<meta name="twitter:creator" content="@esufranchise" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image} />
+		<link rel="stylesheet" href="https://use.typekit.net/fbn3wlv.css">
+	</head>
+	<body>
+		<Navbar />
+		<slot />
+		<Footer />
+	</body>
+</html>

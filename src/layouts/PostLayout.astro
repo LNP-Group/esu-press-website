@@ -1,0 +1,59 @@
+---
+const { frontmatter } = Astro.props
+
+import Footer from '../components/Footer.astro'
+import Navbar from '../components/Navbar.astro'
+import '../styles/globals.scss'
+import '../styles/post.scss'
+
+const postDate = new Date(frontmatter.date)
+
+const formatDate = (date: Date) => {
+    return date.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    })
+}
+
+const formattedDate = formatDate(postDate)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={frontmatter.excerpt}>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="https://cdn.esufranchise.com/press/favicon.svg" />
+		<title>{frontmatter.title}</title>
+		<meta property="og:title" content={frontmatter.title} />
+		<meta property="og:description" content={frontmatter.excerpt} />
+		<meta property="og:image" content={frontmatter.featuredImage} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://press.esufranchise.com" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@esufranchise" />
+		<meta name="twitter:creator" content="@esufranchise" />
+		<meta name="twitter:title" content={frontmatter.title} />
+		<meta name="twitter:description" content={frontmatter.excerpt} />
+		<meta name="twitter:image" content={frontmatter.featuredImage} />
+		<link rel="stylesheet" href="https://use.typekit.net/fbn3wlv.css">
+	</head>
+	<body>
+		<Navbar />
+        <main>
+            <div class="post-info">
+                <img src={frontmatter.featuredImage} alt={frontmatter.title} />
+                <div class="post-info__text">
+                    <h1>{frontmatter.title}</h1>
+                    <p>Written by {frontmatter.author} on {formattedDate}</p>
+                </div>
+            </div>
+            <div class="post-content">
+                <slot />
+            </div>
+        </main>
+		<Footer />
+	</body>
+</html>
